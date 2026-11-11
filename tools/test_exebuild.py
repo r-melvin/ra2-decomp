@@ -28,6 +28,11 @@ class ExeBuildTest(unittest.TestCase):
         exebuild.restore(image, 0x00401000, "steam")
         self.assertEqual(image.hex(), "000051530000")
 
+    def test_ea_app_build_has_the_steam_sites(self):
+        image = bytearray(bytes.fromhex("0000b0c30000"))
+        exebuild.restore(image, 0x00401000, "eaplay")
+        self.assertEqual(image.hex(), "000051530000")
+
     def test_other_build_rows_are_ignored(self):
         image = bytearray(bytes.fromhex("0000909090"))
         exebuild.restore(image, 0x00401000, "tfd")
